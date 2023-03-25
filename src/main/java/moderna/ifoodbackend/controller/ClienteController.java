@@ -1,15 +1,22 @@
 package moderna.ifoodbackend.controller;
 
+import lombok.AllArgsConstructor;
 import moderna.ifoodbackend.model.Cliente;
+import moderna.ifoodbackend.repository.ClienteRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/cliente")
 public class ClienteController {
+
+    private ClienteRepository clienteRepository;
+
 
     @GetMapping("/exibe-texto")
     public String retornaTextoBoasVindas(){
@@ -17,7 +24,7 @@ public class ClienteController {
     }
 
     @GetMapping("/exibir-cliente")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public Cliente retornaCliente(){
         Cliente cliente1 = new Cliente();
         cliente1.setEmail("thebestactor@gmail.com");
@@ -28,6 +35,7 @@ public class ClienteController {
         }
 
     @GetMapping("/listar-clientes")
+    @ResponseStatus(HttpStatus.OK)
     public List<Cliente> retornaClientes(){
         Cliente cliente1 = new Cliente();
         cliente1.setEmail("thebestactor@gmail.com");
@@ -51,6 +59,18 @@ public class ClienteController {
 
         return listaClientes;
 
+    }
+    //forma simples
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente save(@RequestBody Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
+    //com responseEntity
+    @PostMapping("/salvar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Cliente> saves(@RequestBody Cliente cliente){
+        return new ResponseEntity(clienteRepository.save(cliente), HttpStatus.CREATED);
     }
 
 
