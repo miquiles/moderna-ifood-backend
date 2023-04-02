@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Setter
 @Getter
@@ -27,6 +29,5 @@ public class Cliente {
     private String documento;
 
     private String dataNascimento; // sub str to LocalDate
-
 
 }

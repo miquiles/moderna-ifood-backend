@@ -3,8 +3,13 @@ package moderna.ifoodbackend.controller;
 import lombok.AllArgsConstructor;
 import moderna.ifoodbackend.model.Cliente;
 import moderna.ifoodbackend.repository.ClienteRepository;
+import moderna.ifoodbackend.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/cliente")
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClienteController {
 
     private ClienteRepository clienteRepository;
+    private ClienteService clienteService;
 
     @GetMapping("/exibe-texto")
     public String retornaTextoBoasVindas(){
@@ -32,8 +38,17 @@ public class ClienteController {
     @PostMapping("/salvar-cliente")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente salvarCliente(@RequestBody Cliente cliente){
-        return clienteRepository.save(cliente);
+        return clienteService.salvarCliente(cliente);
+    }
 
+    @GetMapping("/listar-clientes")
+    public List<Cliente> listarClientes(){
+        return clienteRepository.findAll();
+    }
+
+    @GetMapping("buscar-cliente/{id}")
+    public Optional<Cliente> buscarClientePorId(@PathVariable("id") Long id){
+        return clienteRepository.findById(id);
     }
 
 
