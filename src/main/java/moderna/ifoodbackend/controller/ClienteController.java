@@ -35,7 +35,7 @@ public class ClienteController {
 
         }
 
-    @PostMapping("/salvar-cliente")
+    @PostMapping("salvar-cliente")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente salvarCliente(@RequestBody Cliente cliente){
         return clienteService.salvarCliente(cliente);
@@ -51,6 +51,19 @@ public class ClienteController {
         return clienteRepository.findById(id);
     }
 
+    @DeleteMapping("deletar/{id}")
+    public void deletarPorId(@PathVariable("id") Long id){
+        clienteService.deletarPorId(id);
+    }
 
+    @DeleteMapping("deletar-todos")
+    public void deletarTudo(){
+        clienteService.deletarTodos();
+    }
+
+    @PutMapping("editar/{id}")
+    public void editarCliente(@RequestBody Cliente cliente, @PathVariable("id") Long id){
+        clienteService.editarClientePorId(cliente, id);
+    }
 }
 
