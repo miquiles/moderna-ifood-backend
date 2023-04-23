@@ -2,11 +2,13 @@ package moderna.ifoodbackend.controller;
 
 import lombok.AllArgsConstructor;
 import moderna.ifoodbackend.model.Cliente;
+import moderna.ifoodbackend.model.Contato;
 import moderna.ifoodbackend.repository.ClienteRepository;
 import moderna.ifoodbackend.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +30,18 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente retornaCliente(){
         Cliente cliente1 = new Cliente();
+        Contato contato = new Contato();
+        List<Contato> contatos = new ArrayList<>();
+        contatos.add(contato);
+
+        contato.setDdd("82");
+        contato.setNumero("998042096");
+        contato.setEmail("miquiles@gmail.com");
+
         cliente1.setEmail("thebestactor@gmail.com");
         cliente1.setDataNascimento("12/10/1970");
         cliente1.setNome("Joey Tribiani");
+        cliente1.setContatos(contatos);
         return cliente1;
 
         }

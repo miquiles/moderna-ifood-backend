@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Entity
 @Setter
@@ -30,4 +31,12 @@ public class Cliente {
 
     private String dataNascimento; // sub str to LocalDate
 
+    //Cliente Possui uma lista de contatos
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
+    private List<Contato> contatos;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_id")
+    private List<Endereco> enderecos;
 }

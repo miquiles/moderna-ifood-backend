@@ -14,4 +14,9 @@ public class Contato {
     private String ddd;
     private String numero;
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
 }
