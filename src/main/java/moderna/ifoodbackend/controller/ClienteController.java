@@ -26,26 +26,6 @@ public class ClienteController {
         return "Seja Bem-vindo ao serviço de cliente do IfoodModerna";
     }
 
-    @GetMapping("/exibir-cliente")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Cliente retornaCliente(){
-        Cliente cliente1 = new Cliente();
-        Contato contato = new Contato();
-        List<Contato> contatos = new ArrayList<>();
-        contatos.add(contato);
-
-        contato.setDdd("82");
-        contato.setNumero("998042096");
-        contato.setEmail("miquiles@gmail.com");
-
-        cliente1.setEmail("thebestactor@gmail.com");
-        cliente1.setDataNascimento("12/10/1970");
-        cliente1.setNome("Joey Tribiani");
-        cliente1.setContatos(contatos);
-        return cliente1;
-
-        }
-
     @PostMapping("salvar-cliente")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente salvarCliente(@RequestBody Cliente cliente){

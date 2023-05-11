@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "db_cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +21,7 @@ public class Cliente {
 
     @Column(length = 100)
     private String nome;
+    private String senha;
 
     @Column(nullable = false)
     private String email;

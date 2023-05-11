@@ -2,20 +2,18 @@ package moderna.ifoodbackend.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
+import moderna.ifoodbackend.model.empresa.Restaurante;
 
 @Entity
 @Data
-public class Contato {
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String ddd;
-    private String numero;
-    private String email;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @OneToOne
     private Cliente cliente;
+    @OneToOne
+    private Restaurante restaurante;
+    private String metodoPagamento;
 
 }
