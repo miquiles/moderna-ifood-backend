@@ -16,7 +16,6 @@ public class Restaurante {
     private String nome;
     private String documento;
     private String categoria;
-
     private double avaliacao;
 
     @OneToMany(cascade = CascadeType.ALL)
