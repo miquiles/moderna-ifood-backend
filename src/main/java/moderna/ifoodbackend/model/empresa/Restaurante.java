@@ -23,7 +23,6 @@ public class Restaurante {
     @JoinColumn(name = "restaurante_id")
     private List<Item> itens;
 
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurante_id")
     private List<Contato> contatos;

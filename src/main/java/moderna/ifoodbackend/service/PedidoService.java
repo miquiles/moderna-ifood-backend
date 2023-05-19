@@ -23,17 +23,15 @@ public class PedidoService {
     public PedidoResponse salvarPedido(List<Pedido> pedidos) {
         UUID transacaoId = UUID.randomUUID();
         var pedidoResponse = new PedidoResponse();
+        Collection<Object> itens = new LinkedHashSet<>();
 
         for(Pedido pedido : pedidos){
             pedido.setDataPedido(LocalDateTime.now());
             var itemSalvo = itemRepository.findById(pedido.getItemId());
             pedido.setValorItem(itemSalvo.get().getPreco());
             pedido.setTransacaoId(transacaoId);
-
         }
-
             pedidoRepository.saveAll(pedidos);
-
 
             var valorTotal = 0.0;
 
@@ -46,8 +44,8 @@ public class PedidoService {
                 valorTotal += pedido.getValorItem();
                 pedidoResponse.setValorTotal(valorTotal);
                 var itemSalvo = itemRepository.findById(pedido.getItemId()).orElse(null);
-                pedidoResponse.setItens(Collections.singletonList(itemSalvo.getNome()));
-
+                itens.add(itemSalvo.getNome());
+                pedidoResponse.setItens(itens);
 
             }
 

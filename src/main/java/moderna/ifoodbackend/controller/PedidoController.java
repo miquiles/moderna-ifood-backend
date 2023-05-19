@@ -31,8 +31,8 @@ public class PedidoController {
         return pedidoRepository.findById(id);
     }
 
-    @GetMapping("buscar/{documento-cliente}")
-    public Optional<List<Pedido>> buscarPorId(@PathVariable("documento-cliente") String documentoCliente){
+    @GetMapping("buscar/")
+    public Optional<List<Pedido>> buscarPorId(@RequestParam(value = "documento-cliente") String documentoCliente){
         return pedidoService.buscarPorDocumentoCliente(documentoCliente);
     }
 

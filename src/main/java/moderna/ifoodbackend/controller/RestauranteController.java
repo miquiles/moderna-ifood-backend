@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 
 import moderna.ifoodbackend.model.empresa.Restaurante;
 import moderna.ifoodbackend.repository.RestauranteRepository;
+import moderna.ifoodbackend.service.RestauranteService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class RestauranteController {
 
     RestauranteRepository restauranteRepository;
+    RestauranteService restauranteService;
+
     @PostMapping("/criar")
     public Restaurante novo(@RequestBody Restaurante restaurante){
         return restauranteRepository.save(restaurante);
@@ -23,6 +27,11 @@ public class RestauranteController {
     @GetMapping("listar-todos")
     public List<Restaurante> listar(){
         return restauranteRepository.findAll();
+    }
+
+    @GetMapping("listar/")
+    public Optional<List<Restaurante>> listarPorCategoria(@RequestParam (value = "categoria") String categoria){
+        return restauranteRepository.findByCategoria(categoria);
     }
 
     @GetMapping("buscar/{id}")
@@ -38,6 +47,11 @@ public class RestauranteController {
     @DeleteMapping("deletar-todos")
     public void deletarTodos(){
         restauranteRepository.deleteAll();
+    }
+
+    @GetMapping("categorias")
+    public Collection<Object> listarCategorias(){
+        return restauranteService.listarCategorias();
     }
 
 
