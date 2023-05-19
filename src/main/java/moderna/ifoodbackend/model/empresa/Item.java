@@ -1,5 +1,6 @@
 package moderna.ifoodbackend.model.empresa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class Item {
     private String nome;
     private String descricao;
     private Double preco;
+
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")

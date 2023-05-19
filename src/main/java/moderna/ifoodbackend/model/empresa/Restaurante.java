@@ -1,5 +1,6 @@
 package moderna.ifoodbackend.model.empresa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import moderna.ifoodbackend.model.Contato;
@@ -21,6 +22,7 @@ public class Restaurante {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurante_id")
     private List<Item> itens;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurante_id")

@@ -1,5 +1,6 @@
 package moderna.ifoodbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +28,7 @@ public class Cliente {
     @Column(nullable = false)
     private String documento;
     private String dataNascimento;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente_id")

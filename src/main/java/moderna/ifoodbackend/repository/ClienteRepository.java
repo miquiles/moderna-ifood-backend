@@ -13,7 +13,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
      Optional<Cliente> findByEmail(String email);
 
-
      @Modifying
      @Query(nativeQuery = true,
              value = "update db_cliente set nome = ?2," +

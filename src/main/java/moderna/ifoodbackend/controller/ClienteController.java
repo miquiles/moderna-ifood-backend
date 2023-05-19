@@ -2,42 +2,35 @@ package moderna.ifoodbackend.controller;
 
 import lombok.AllArgsConstructor;
 import moderna.ifoodbackend.model.Cliente;
-import moderna.ifoodbackend.model.Contato;
 import moderna.ifoodbackend.repository.ClienteRepository;
 import moderna.ifoodbackend.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 @AllArgsConstructor
 public class ClienteController {
 
     private ClienteRepository clienteRepository;
     private ClienteService clienteService;
 
-    @GetMapping("/exibe-texto")
-    public String retornaTextoBoasVindas(){
-        return "Seja Bem-vindo ao serviço de cliente do IfoodModerna";
-    }
-
-    @PostMapping("salvar-cliente")
+    @PostMapping("salvar")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente salvarCliente(@RequestBody Cliente cliente){
         return clienteService.salvarCliente(cliente);
     }
 
-    @GetMapping("/listar-clientes")
+    @GetMapping("listar")
     public List<Cliente> listarClientes(){
         return clienteRepository.findAll();
     }
 
-    @GetMapping("buscar-cliente/{id}")
+    @GetMapping("buscar/{id}")
     public Optional<Cliente> buscarClientePorId(@PathVariable("id") Long id){
         return clienteRepository.findById(id);
     }
